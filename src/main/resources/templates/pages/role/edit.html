@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/dashboard.html}">>
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" layout:fragment="content">
+        <h1>Roles</h1>
+        <div class="container mt-5">
+            <form th:action="@{/roles/edit/{id}(id=${role.id})}" method="post">
+                <div class="form-group">
+                    <label for="nom">Role Name :</label>
+                    <input type="text" class="form-control" id="roleName" name="roleName" th:field="${role.roleName}"
+                    th:value="${role.roleName}" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Soumettre</button>
+            </form>
+        </div>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html >
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/dashboard.html}">>
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" layout:fragment="content">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h1 class="mb-0">Users</h1>
+                <button class="btn btn-primary"><a class="text-white" th:href="@{/users}">Liste User</a></button>
+            </div>
+          <div class="container mt-5">
+            <form th:action="@{/users/create}" method="post">
+                <div class="form-group">
+                    <label for="nom">Nom :</label>
+                    <input type="text" class="form-control" id="nom" name="nom" required>
+                </div>
+                <div class="form-group">
+                    <label for="prenom">Prénom :</label>
+                    <input type="text" class="form-control" id="prenom" name="prenom" required>
+                </div>
+                <div class="form-group">
+                    <label for="username">Nom d'utilisateur :</label>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Mot de passe :</label>
+                    <input type="password" class="form-control" id="pwd" name="pwd" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email :</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="telephone">Téléphone :</label>
+                    <input type="tel" class="form-control" id="telephone" name="telphone" required>
+                </div>
+                <div class="form-group ">
+                    <input type="checkbox" class="form-check-input" id="enabled" name="enabled">
+                    <label for="enabled">Activé :</label>
+                </div>
+                <h3>Choisir les rôles de l'utilisateur</h3>
+                <div class="form-group d-flex p-2" th:each="role : ${roles}">
+                    <label th:for="${'role_' + role.id}" th:text="${role.roleName}"></label>
+                    <input type="checkbox" class="form-check-input" th:id="${'role_' + role.id}" th:name="roles" th:value="${role.id}" th:checked="${user.roles != null and user.roles.contains(role)}">
+                </div>
+                <button type="submit" class="btn btn-primary">Soumettre</button>
+            </form>
+        </div>
+        </main>
+    </body>
+</html>

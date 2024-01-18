@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/dashboard.html}">>
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" layout:fragment="content">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h1 class="mb-0">Users</h1>
+            <button class="btn btn-primary"><a class="text-white" th:href="@{/users/create}">Create User</a></button>
+        </div>
+        <table class="table align-middle mb-0 bg-white">
+            <thead class="bg-light">
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>Roles</th>
+                    <th>telphone</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody th:each="user : ${users}">
+                <tr>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <img th:src="@{/images/avatar/profile.jpg}" alt=""
+                                style="width: 45px; height: 45px" class="rounded-circle" />
+                            <div class="ms-3">
+                                <p class="fw-bold mb-1"><span th:text="${user.nom}"></span>-<span th:text="${user.prenom}"></span></p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <p class="fw-normal mb-1"><span th:text="${user.email}"></p>
+                    </td>
+                    <td>
+                        <!-- Si aucun rôle n'est présent -->
+                        <div th:if="${user.enabled}">
+                            <span class="badge badge-success rounded-pill d-inline">Active</span>
+                        </div>
+                        <div th:unless="${user.enabled}">
+                            <span class="badge badge-danger rounded-pill d-inline">Inactif</span>
+                        </div>
+                    </td>
+                    <td>
+                        <!-- Boucle pour les autres rôles -->
+                        <span th:each="r : ${user.roles}" th:if="${r != null}">
+                            <div>
+                                <p class="fw-normal mb-1"><span th:text="${r.roleName}"></span></p>
+                            </div>
+                        </span>
+                        
+                        <!-- Si aucun rôle n'est présent -->
+                        <div th:if="${user.roles == null or user.roles.size() == 0}">
+                            <p class="fw-normal mb-1">None</p>
+                        </div>
+                    </td>
+                    <td><span th:text="${user.telphone}"></td>
+                    <td>
+                        <button type="button" class="btn btn-link btn-sm btn-rounded">
+                            <a th:href="@{/users/edit/{id}(id=${user.id})}">Edit</a>
+                        </button>
+                        <button type="button" class="btn btn-link btn-sm btn-rounded">
+                            <a th:href="@{/users/show/{id}(id=${user.id})}" style="color: green;">Show</a>
+                        </button>
+                        <button type="button" class="btn btn-link btn-sm btn-rounded">
+                            <a th:href="@{/users/delete/{id}(id=${user.id})}" style="color: red;">Delete</a>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+</body>
+
+</html>

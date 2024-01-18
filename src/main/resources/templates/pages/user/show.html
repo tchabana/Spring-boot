@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/dashboard.html}">
+>
+
+<head>
+    <title></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" layout:fragment="content">
+        <div class="container mt-5">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Détails de l'utilisateur</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 class="card-subtitle mb-2 text-muted">Informations de base</h6>
+                            <p class="card-text"><strong>Nom:</strong> <span th:text="${user.nom}"></span></p>
+                            <p class="card-text"><strong>Prénom:</strong> <span th:text="${user.prenom}"></span></p>
+                            <p class="card-text"><strong>Nom d'utilisateur:</strong> <span th:text="${user.username}"></span></p>
+                            <p class="card-text"><strong>Email:</strong> <span th:text="${user.email}"></span></p>
+                            <p class="card-text"><strong>Téléphone:</strong> <span th:text="${user.telphone}"></span></p>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <h6 class="card-subtitle mb-2 text-muted">Roles et Permission</h6>
+                            <span th:each="r : ${user.roles}" th:if="${r != null}">
+                                <div>
+                                    <p class="fw-normal mb-1"><span th:text="${r.roleName}"></span></p>
+                                </div>
+                            </span>
+                            <div th:if="${user.roles == null or user.roles.size() == 0}">
+                                <p class="fw-normal mb-1">Aucun role assigné à l'utilisateur</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+  <head>
+    <title></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <!--BeginSidebar-->
+    <nav id="sidebar" th:fragment="sidebar">
+      <div class="p-4 pt-5">
+        <a href="#" class="img logo rounded-circle mb-5">
+          <img
+            style=" height: 80px"
+            th:src="@{/images/logo.png}"
+            alt=""
+            srcset=""
+          />
+        </a>
+        <ul class="list-unstyled components mb-5">
+          <li class="active">
+            <a
+              href="#homeSubmenu"
+              data-toggle="collapse"
+              aria-expanded="false"
+              class="dropdown-toggle"
+              >Users</a
+            >
+            <ul class="collapse list-unstyled" id="homeSubmenu">
+              <li>
+                <a th:href="@{/users}">Users list</a>
+              </li>
+              <li>
+                <a th:href="@{/users/create}">Create User</a>
+              </li>
+              <li>
+                <a href="#">Group users by Roles</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a
+              href="#pageSubmenu"
+              data-toggle="collapse"
+              aria-expanded="false"
+              class="dropdown-toggle"
+              >Roles</a
+            >
+            <ul class="collapse list-unstyled" id="pageSubmenu">
+              <li>
+                <a th:href="@{/roles}">Roles list</a>
+              </li>
+              <li>
+                <a th:href="@{/roles/create}">Create Role</a>
+              </li>
+              <li>
+                <a href="#">Roles Statistics</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a
+              href="#Produits"
+              data-toggle="collapse"
+              aria-expanded="false"
+              class="dropdown-toggle"
+              >Produits</a
+            >
+            <ul class="collapse list-unstyled" id="Produits">
+              <li>
+                <a href="#">Page 1</a>
+              </li>
+              <li>
+                <a href="#">Page 2</a>
+              </li>
+              <li>
+                <a href="#">Page 3</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a th:href="@{/logout}" class="btn btn-primary">Déconnexion</a>
+          </li>
+        </ul>
+
+        <div class="footer">
+          <p>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;
+            <script>
+              document.write(new Date().getFullYear());
+            </script>
+            All rights reserved | hafitchabana@2004
+            <i class="icon-heart" aria-hidden="true"></i> by
+            <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          </p>
+        </div>
+      </div>
+    </nav>
+    <!--End-sideBar-->
+  </body>
+</html>

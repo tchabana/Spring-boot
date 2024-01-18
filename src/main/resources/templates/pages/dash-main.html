@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/dashboard.html}">
+>
+
+<head>
+    <title></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" layout:fragment="content">
+        <h1 class="mb-4">Dashboard</h1>
+        <div th:if="${param.loginSuccess}">
+            <p class="alert alert-success">Connexion réussie ! Bienvenue.</p>
+        </div>
+    </main>
+</body>
+
+</html>
